@@ -4,6 +4,9 @@
 
 <div id="contenu">
     <h1>Découvrez les jeux MMiple</h1>
+    <p>Voici la liste des jeux de notre catalogue :</p>
+
+<?php print_r($_SESSION); ?>
     <?php
 
 
