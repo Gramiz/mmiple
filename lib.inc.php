@@ -94,4 +94,38 @@ function recuperer_jeu($co, $id) {
       }
     }
 
+    function afficherPanier($co)
+    {
+        if (empty($_SESSION['panier'])) {
+            $tablePanier = '<p class="erreur">Votre panier est vide !</p>';
+        } else {
+           $plus='plus';
+           $moins='moins';
+           $totaljeux=0;
+            $tablePanier = '<table id="tablePanier">' . "\n";
+            $tablePanier .= '<thead><th>Jeu</th><th>Prix</th>
+        <th>Quantité</th><th>Total</th></thead>' . "\n";
+            foreach ($_SESSION['panier'] as $id => $jeu) {
+                $tablePanier .= '<tr>';
+                $infos = recuperer_jeu($co, $id);
+                $tablePanier .= '<td><span class="ImageJeuPanier"><img src="' . $infos['jeu_photo1'] . '" width="100px"/></span>' . "\n";
+                $tablePanier .= $jeu['nom'] . '</td>';
+                $tablePanier .= '<td>' . $jeu['prix'] . '</td>';
+                $tablePanier.=' <td><a class="fondRouge" href="panier.php?jeu_id='.$id.'&action='.$moins.'">-</a>'.$jeu['quantite'].'<a class="fondRouge" href="panier.php?jeu_id='.$id.'&action='.$plus.'">+</a></td>';
+                $tablePanier.=' <td>'.$jeu['prix']*$jeu['quantite'].'</td></tr>';
+                $tablePanier .= '</td>';
+                $totaljeux=$totaljeux+$jeu['prix']*$jeu['quantite'];
+            }
+    
+            $tablePanier.='<thead><th colspan="3">Total de la commande : </th>';
+            $tablePanier.='<th>' .$totaljeux. '$euro;</th></thead>';
+            $tablePanier .= '</table>' . "\n";
+   
+        }     
+        return $tablePanier;
+       }
+    
+
+
+
 ?>

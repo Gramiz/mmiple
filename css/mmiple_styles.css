@@ -98,3 +98,11 @@ h3{
 img{
     height: 35px;
 }
+
+.fondRouge {
+
+    background-color: brown; padding: 4px;
+    
+    border-radius: 4px; margin: 4px;
+    
+    }

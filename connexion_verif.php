@@ -12,7 +12,6 @@ $lignes_resultat = $resultat->rowCount();
 if ($lignes_resultat > 0) { // y a-t-il des résultats ?
     // oui : pour chaque résultat : afficher
     $ligne = $resultat->fetch(PDO::FETCH_ASSOC);
-    $hash = $ligne['client_mdp'];
     if (password_verify($mdp, $ligne['client_mdp'])) {
         $_SESSION['prenom_client'] = $ligne['client_prenom'];
         $_SESSION['numero_client'] = $ligne['client_code'];
